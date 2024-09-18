@@ -15,17 +15,17 @@ describe('Component', async () => {
     });
 
     it('state is true', async () => {
-        useCustomHook.mockReturnValue({ state: true })
+        vi.mocked(useCustomHook).mockReturnValue({ state: true })
         render(<Component />);
         expect(screen.getByText('state is true')).toBeInTheDocument()
     });
 
     it('state is false then change to true', async () => {
-        useCustomHook.mockReturnValue({ state: false })
+        vi.mocked(useCustomHook).mockReturnValue({ state: false })
         const component = render(<Component />);
         expect(screen.getByText('state is false')).toBeInTheDocument()
 
-        useCustomHook.mockReturnValue({ state: true })
+        vi.mocked(useCustomHook).mockReturnValue({ state: true })
         component.rerender(<Component />)
         expect(screen.getByText('state is true')).toBeInTheDocument()
     });
